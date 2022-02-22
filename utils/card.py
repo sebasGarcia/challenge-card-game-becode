@@ -7,7 +7,7 @@ class Symbol:
         self.color = color
         self.icon = icon
 
-    def __str__ (self):
+    def __str__ (self) -> str:
         return f"{self.color} - {self.icon}"
 
 class Card(Symbol):
@@ -18,9 +18,12 @@ class Card(Symbol):
         Symbol.__init__(self, color, icon)
         self.value = value
     
-    def __str__ (self):
+    def __str__ (self) -> str:
+        return f"{self.color} - {self.icon} - {self.value}"
+    
+    def __repr__(self) -> str:
         return f"{self.color} - {self.icon} - {self.value}"
 
 
-myCard = Card("red",'♥', '10')
-print(myCard)
+#myCard = Card("red",'♥', '10')
+#print(myCard)
