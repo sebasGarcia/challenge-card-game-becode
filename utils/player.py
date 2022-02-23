@@ -2,6 +2,7 @@ from utils.card import Card
 from typing import List
 import random
 
+
 class Player:
     """
     This class represents the player in the game and has the following attributes in the constructor:
@@ -11,15 +12,16 @@ class Player:
     :number_of_cards: An int representing the number of cards he has left
     :history: A list of Card, which are all the cards he has played
     """
+
     def __init__(self, name):
 
         self.name = name
-        self.cards:List[Card] = []
+        self.cards: List[Card] = []
         self.turn_count = 0
         self.number_of_cards = 0
-        self.history:List[Card] = []
+        self.history: List[Card] = []
 
-    def __str__ (self) -> str:
+    def __str__(self) -> str:
         return f"{self.name} turn count {self.turn_count}"
 
     def play(self) -> Card:
@@ -31,43 +33,97 @@ class Player:
         self.turn_count += 1
         myCard = random.choice(self.cards)
         self.history.append(myCard)
-        #Remove card from hand
+        # Remove card from hand
         self.cards.remove(myCard)
-        print("Player " + self.name + " - turn #" + str(self.turn_count) + " played card: " + str(myCard))
+        print(
+            "Player "
+            + self.name
+            + " - turn #"
+            + str(self.turn_count)
+            + " played card: "
+            + str(myCard)
+        )
         return myCard
 
-class Deck: 
-   
+
+class Deck:
+    """
+    This class represents the deck in the game, it has the following attributes in the constructor:
+    cards: A string w.
+    :cards: A list of Card, which contains all the cards in the deck.
+    """
+
     def __init__(self):
-        self.cards:List[Card] = []
+        self.cards: List[Card] = []
+
+    def __str__(self) -> str:
+        return self.cards
+
+    """  
+
+    This function will use all the possible value options, icons and colors to create a unique deck 
+    it will populate the card list of the class
+    """
 
     def filldeck(self):
 
-        value_options = ['A','2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-        icon_options = ['♥',' ♦', '♣', '♠']
-        color_options =["red", "red", "black", "black"]
+        value_options = [
+            "A",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "J",
+            "Q",
+            "K",
+        ]
+        icon_options = ["♥", " ♦", "♣", "♠"]
+        color_options = ["red", "red", "black", "black"]
         for value in value_options:
             for index, icon in enumerate(icon_options):
-                card = Card(color_options[index],icon,value)
-                #print(card)
+                card = Card(color_options[index], icon, value)
+
                 self.cards.append(card)
 
+    """  
+    This function shuffle the cards inside the list in the class 
+
+    """
 
     def shuffle(self):
-        self.cards = random.sample(self.cards,len(self.cards))
+        self.cards = random.sample(self.cards, len(self.cards))
 
-    
-    def distribute(self,players:list):
-        cards_per_player=int(len(self.cards)/len(players))
-        #print(cards_per_player)
-        if(len(self.cards)%len(players)==0):
-            cards_distributed = [self.cards[i * cards_per_player:(i + 1) * cards_per_player] for i in range((len(self.cards) + cards_per_player - 1) // cards_per_player) ]
-           
+    """  
+    This function distribute evenly the cards inside the list for all players, the contraint is that the amount of players must be a dividor of 52
+    otherwise it will display at message. It has one parameter:
+    :param players: A list of objects Player
+
+    """
+
+    def distribute(self, players: list):
+        cards_per_player = int(len(self.cards) / len(players))
+
+        if len(self.cards) % len(players) == 0:
+            cards_distributed = [
+                self.cards[i * cards_per_player : (i + 1) * cards_per_player]
+                for i in range(
+                    (len(self.cards) + cards_per_player - 1) // cards_per_player
+                )
+            ]
+
             i = 0
             for player in players:
-                if(i<len(cards_distributed)):
+                if i < len(cards_distributed):
                     player.cards = cards_distributed[i].copy()
-                    i+=1
+                    i += 1
 
         else:
             print("Sorry, numbers of players can only be a even number or one")
+
+          
+            
