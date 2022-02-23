@@ -1,3 +1,7 @@
+import sys
+#Since there was a problem importing the files in the folder utils I included sys and used sys.path.append to append the location of folder
+sys.path.append('C:/Users/sebas/Desktop/BeCode/Projects/challenge-card-game-becode/utils')
+
 class Symbol:
 
     icon_options = ['♥',' ♦', '♣', '♠']
@@ -23,7 +27,3 @@ class Card(Symbol):
     
     def __repr__(self) -> str:
         return f"{self.color} - {self.icon} - {self.value}"
-
-
-#myCard = Card("red",'♥', '10')
-#print(myCard)

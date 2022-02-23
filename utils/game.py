@@ -1,6 +1,6 @@
-from player import Player
+from utils.player import Player
 from typing import List
-from player import Deck
+from utils.player import Deck
 from card import Card
 class Board:
 
@@ -24,13 +24,41 @@ class Board:
         
         myDeck.distribute(myPlayers)
         
-#NEXT: Figure out the logic in the game... do history_cards list get filled after each turn, do active cards list only contain cards in the current
-#turn? I think the amount of turns depends on the amount of cards that each player has 
-        for player in myPlayers:
-            #Adding card to the history cards
-            self.active_cards()
-            self.history_cards(player.play())
+      
+        #That number of turns is equal to the number of cards each player has in their hands..
+        total_turns = len(myPlayers[0].cards)
+
+        i=0
+        while (i < total_turns):
+            self.turn_count  = i+1
+            print("-----------------Turn #" + str(self.turn_count)+ "------------------") 
+
+        #    print("Turn count#" + str(turn)) 
+            for player in myPlayers:
+
+               # print("Player: "+ player.name + ""str(turn)) 
+                #Adding card to the history cards
+                current_card = player.play()
+                self.active_cards.append(current_card)
+                self.history_cards.append(current_card)
             
+            print("The number of cards in history is now: " + str(len(self.history_cards)))
+            
+            
+            if(len(self.history_cards)<52):
+                print("Active cards:")
+                
+                for card in self.active_cards:
+                    print(str(card))
+                
+                if len(self.active_cards) > 0:
+                    self.active_cards.clear()
+            else:
+                print("Game's over, thank you for playing!")
+           
+            i+=1            
        
 
+myBoard = Board()
+myBoard.start_game()
 
