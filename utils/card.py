@@ -5,15 +5,16 @@ sys.path.append(
     "C:/Users/sebas/Desktop/BeCode/Projects/challenge-card-game-becode/utils"
 )
 
-"""
+
+
+
+class Symbol:
+    """
     This class represents the Symbol of every card which is composed by an icon and a color, the class has attributes:
     :color: a string attribute.
     :icon: one of following options: '♥',' ♦', '♣', '♠'.
 
     """
-
-
-class Symbol:
 
     icon_options = ["♥", " ♦", "♣", "♠"]
 
@@ -26,7 +27,11 @@ class Symbol:
         return f"{self.color} - {self.icon}"
 
 
-"""
+
+
+
+class Card(Symbol):
+    """
     This class represents the card, it inherits from the class Symbol and adds a value to it.
     The class has attributes:
     :color: a string attribute.
@@ -35,9 +40,6 @@ class Symbol:
     :value which is one of the following 'A','2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'
 
     """
-
-
-class Card(Symbol):
 
     value_options = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 

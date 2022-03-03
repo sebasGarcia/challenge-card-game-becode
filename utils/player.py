@@ -59,13 +59,14 @@ class Deck:
     def __str__(self) -> str:
         return self.cards
 
-    """  
-
-    This function will use all the possible value options, icons and colors to create a unique deck 
-    it will populate the card list of the class
-    """
+    
 
     def filldeck(self):
+        """  
+
+        This function will use all the possible value options, icons and colors to create a unique deck 
+        it will populate the card list of the class
+        """
 
         value_options = [
             "A",
@@ -90,22 +91,24 @@ class Deck:
 
                 self.cards.append(card)
 
-    """  
-    This function shuffle the cards inside the list in the class 
-
-    """
 
     def shuffle(self):
+        
+        """  
+        This function shuffle the cards inside the list in the class 
+
+        """
         self.cards = random.sample(self.cards, len(self.cards))
 
-    """  
+    
+
+    def distribute(self, players: list):
+        """  
     This function distribute evenly the cards inside the list for all players, the contraint is that the amount of players must be a dividor of 52
     otherwise it will display at message. It has one parameter:
     :param players: A list of objects Player
 
     """
-
-    def distribute(self, players: list):
         cards_per_player = int(len(self.cards) / len(players))
 
         if len(self.cards) % len(players) == 0:
