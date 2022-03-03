@@ -37,7 +37,7 @@ A deck of cards is created, and split between the different players and each pla
 
 ### Directory layout for the project
 
-
+```
 C:.
 │   .gitignore
 │   main.py
@@ -52,7 +52,7 @@ C:.
             card.cpython-39.pyc
             game.cpython-39.pyc
             player.cpython-39.pyc
-            
+```           
     
 ### Usage
 
